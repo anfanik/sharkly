@@ -1,0 +1,5 @@
+name: Sharkly
+main: me.anfanik.sharkly.Bootstrap
+version: $version
+author: anfanik
+depend: [StedaApi]
