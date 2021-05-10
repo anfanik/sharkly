@@ -1,2 +1,2 @@
-# sharkly
+# sharkly 🦈
 Minecraft minigame library.
