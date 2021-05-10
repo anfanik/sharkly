@@ -2,6 +2,7 @@ package me.anfanik.sharkly.utility.chat;
 
 import lombok.experimental.UtilityClass;
 import lombok.val;
+import me.anfanik.sharkly.utility.Formatter;
 import me.anfanik.sharkly.utility.PlayerWrapper;
 import me.anfanik.steda.api.utility.TextUtility;
 import org.bukkit.Bukkit;
@@ -18,61 +19,61 @@ public class ChatUtility {
         }
     }
 
-    public void sendMessage(Player player, ChatLevel level, String message) {
-        sendMessage(player, level.format(message));
+    public void sendMessage(Player player, ChatLevel level, String message, Object... arguments) {
+        sendMessage(player, level.format(Formatter.format(message, arguments)));
     }
 
-    public void broadcastMessage(ChatLevel level, String message) {
-        val formatted = level.format(message);
+    public void broadcastMessage(ChatLevel level, String message, Object... arguments) {
+        val formatted = level.format(Formatter.format(message, arguments));
         Bukkit.getOnlinePlayers().forEach(player -> sendMessage(player, formatted));
     }
 
-    public void fine(Player player, String message) {
-        sendMessage(player, ChatLevels.FINE, message);
+    public void fine(Player player, String message, Object... arguments) {
+        sendMessage(player, ChatLevels.FINE, message, arguments);
     }
 
-    public void fine(PlayerWrapper wrapper, String message) {
-        wrapper.ifPlayer(player -> sendMessage(player, ChatLevels.FINE, message));
+    public void fine(PlayerWrapper wrapper, String message, Object... arguments) {
+        wrapper.ifPlayer(player -> sendMessage(player, ChatLevels.FINE, message, arguments));
     }
 
-    public void broadcastFine(String message) {
-        broadcastMessage(ChatLevels.FINE, message);
+    public void broadcastFine(String message, Object... arguments) {
+        broadcastMessage(ChatLevels.FINE, message, arguments);
     }
 
-    public void warning(Player player, String message) {
-        sendMessage(player, ChatLevels.WARNING, message);
+    public void warning(Player player, String message, Object... arguments) {
+        sendMessage(player, ChatLevels.WARNING, message, arguments);
     }
 
-    public void warning(PlayerWrapper wrapper, String message) {
-        wrapper.ifPlayer(player -> sendMessage(player, ChatLevels.WARNING, message));
+    public void warning(PlayerWrapper wrapper, String message, Object... arguments) {
+        wrapper.ifPlayer(player -> sendMessage(player, ChatLevels.WARNING, message, arguments));
     }
 
-    public void broadcastWarning(String message) {
-        broadcastMessage(ChatLevels.WARNING, message);
+    public void broadcastWarning(String message, Object... arguments) {
+        broadcastMessage(ChatLevels.WARNING, message, arguments);
     }
 
-    public void error(Player player, String message) {
-        sendMessage(player, ChatLevels.ERROR, message);
+    public void error(Player player, String message, Object... arguments) {
+        sendMessage(player, ChatLevels.ERROR, message, arguments);
     }
 
-    public void error(PlayerWrapper wrapper, String message) {
-        wrapper.ifPlayer(player -> sendMessage(player, ChatLevels.ERROR, message));
+    public void error(PlayerWrapper wrapper, String message, Object... arguments) {
+        wrapper.ifPlayer(player -> sendMessage(player, ChatLevels.ERROR, message, arguments));
     }
 
-    public void broadcastError(String message) {
-        broadcastMessage(ChatLevels.ERROR, message);
+    public void broadcastError(String message, Object... arguments) {
+        broadcastMessage(ChatLevels.ERROR, message, arguments);
     }
 
-    public void debug(Player player, String message) {
-        sendMessage(player, ChatLevels.DEBUG, message);
+    public void debug(Player player, String message, Object... arguments) {
+        sendMessage(player, ChatLevels.DEBUG, message, arguments);
     }
 
-    public void debug(PlayerWrapper wrapper, String message) {
-        wrapper.ifPlayer(player -> sendMessage(player, ChatLevels.DEBUG, message));
+    public void debug(PlayerWrapper wrapper, String message, Object... arguments) {
+        wrapper.ifPlayer(player -> sendMessage(player, ChatLevels.DEBUG, message, arguments));
     }
 
-    public void broadcastDebug(String message) {
-        broadcastMessage(ChatLevels.DEBUG, message);
+    public void broadcastDebug(String message, Object... arguments) {
+        broadcastMessage(ChatLevels.DEBUG, message, arguments);
     }
 
 }
