@@ -1,0 +1,13 @@
+#IDEA
+.idea
+*.iml
+
+#Gradle
+.gradle
+build
+gradle.properties
+
+#macOS
+.DS_Store
+__MACOSX
+*.icloud
