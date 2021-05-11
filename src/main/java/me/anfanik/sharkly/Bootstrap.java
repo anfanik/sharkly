@@ -6,7 +6,7 @@ public class Bootstrap extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        super.onEnable();
+        Sharkly.initialize(this);
     }
 
 }
