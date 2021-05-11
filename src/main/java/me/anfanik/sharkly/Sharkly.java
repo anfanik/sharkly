@@ -44,7 +44,7 @@ public class Sharkly {
             if (service instanceof Listener) {
                 Bukkit.getPluginManager().registerEvents((Listener) service, plugin);
             }
-            service.enable();
+            service.enable(plugin);
             services.put(clazz, service);
         }
     }
