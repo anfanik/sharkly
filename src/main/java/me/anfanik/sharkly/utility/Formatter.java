@@ -20,7 +20,7 @@ public class Formatter {
             }
         }
 
-        return builder.toString();
+        return builder.substring(0, builder.length() - 2);
     }
 
 }
