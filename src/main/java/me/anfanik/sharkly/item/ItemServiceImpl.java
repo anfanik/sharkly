@@ -4,6 +4,7 @@ import com.google.common.base.Preconditions;
 import lombok.val;
 import me.anfanik.sharkly.utility.Hand;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
@@ -12,7 +13,7 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.*;
 
-public class ItemServiceImpl implements ItemService {
+public class ItemServiceImpl implements ItemService, Listener {
 
     private final Map<ItemStack, List<ItemUseHandler>> active = new HashMap<>();
     private final List<ItemStack> locked = new ArrayList<>();
