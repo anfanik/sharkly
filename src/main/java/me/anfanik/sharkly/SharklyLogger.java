@@ -3,7 +3,7 @@ package me.anfanik.sharkly;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static me.anfanik.sharkly.utility.Formatter.format;
+import static me.anfanik.sharkly.utility.Formatter.replaceArguments;
 
 public class SharklyLogger {
 
@@ -22,7 +22,7 @@ public class SharklyLogger {
     }
 
     public static void info(String text, Object... arguments) {
-        info(format(text, arguments));
+        info(replaceArguments(text, arguments));
     }
 
     public static void warning(String text) {
@@ -30,7 +30,7 @@ public class SharklyLogger {
     }
 
     public static void warning(String text, Object... arguments) {
-        warning(format(text, arguments));
+        warning(replaceArguments(text, arguments));
     }
 
     public static void warning(String text, Throwable throwable, Object... arguments) {
@@ -43,7 +43,7 @@ public class SharklyLogger {
     }
 
     public static void error(String text, Object... arguments) {
-        error(format(text, arguments));
+        error(replaceArguments(text, arguments));
     }
 
     public static void error(String text, Throwable throwable, Object... arguments) {

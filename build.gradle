@@ -11,13 +11,6 @@ repositories {
     maven {
         url 'https://repository.anfanik.me/public'
     }
-    maven {
-        url 'https://repository.anfanik.me/private/'
-        credentials {
-            username System.getenv("A5K_USERNAME")
-            password System.getenv("A5K_PASSWORD")
-        }
-    }
 }
 
 dependencies {
@@ -25,7 +18,6 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok:1.18.20'
 
     compileOnly 'org.spigotmc:spigot:1.12.2-R0.1-SNAPSHOT'
-    compileOnly 'me.anfanik.steda:stedaapi:1.17-SNAPSHOT'
 }
 
 tasks.processResources {

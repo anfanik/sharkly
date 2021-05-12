@@ -2,30 +2,39 @@ package me.anfanik.sharkly.utility.chat;
 
 import lombok.experimental.UtilityClass;
 import lombok.val;
+import lombok.var;
 import me.anfanik.sharkly.utility.Formatter;
 import me.anfanik.sharkly.utility.PlayerWrapper;
-import me.anfanik.steda.api.utility.TextUtility;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 @UtilityClass
 public class ChatUtility {
 
-    public void sendMessage(Player player, String message) {
-        if (player != null) {
-            player.sendMessage(TextUtility.colorize(message));
-        } else {
-            throw new IllegalStateException("player is not online");
-        }
+    private String prepare(String message, Object... arguments) {
+        var formatted = Formatter.replaceArguments(message, arguments);
+        formatted = Formatter.format(formatted);
+        return formatted;
+    }
+
+    public void sendMessage(Player player, String message, Object... arguments) {
+        var formatted = prepare(message, arguments);
+        player.sendMessage(formatted);
+    }
+
+    public void broadcastMessage(String message, Object... arguments) {
+        var formatted = prepare(message, arguments);
+        Bukkit.getOnlinePlayers().forEach(player -> player.sendMessage(formatted));
     }
 
     public void sendMessage(Player player, ChatLevel level, String message, Object... arguments) {
-        sendMessage(player, level.format(Formatter.format(message, arguments)));
+        var formatted = prepare(level.format(message), arguments);
+        player.sendMessage(formatted);
     }
 
     public void broadcastMessage(ChatLevel level, String message, Object... arguments) {
-        val formatted = level.format(Formatter.format(message, arguments));
-        Bukkit.getOnlinePlayers().forEach(player -> sendMessage(player, formatted));
+        var formatted = prepare(level.format(message), arguments);
+        Bukkit.getOnlinePlayers().forEach(player -> player.sendMessage(formatted));
     }
 
     public void fine(Player player, String message, Object... arguments) {
