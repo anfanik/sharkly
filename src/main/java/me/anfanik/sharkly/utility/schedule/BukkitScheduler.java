@@ -24,6 +24,8 @@ public class BukkitScheduler implements Scheduler {
         Runnable runnable = () -> {
             if (task.isCancelled()) {
                 bukkitTask.get().cancel();
+            } else {
+                task.run();
             }
         };
 
