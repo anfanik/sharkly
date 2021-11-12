@@ -21,6 +21,8 @@ public class ItemServiceImpl implements ItemService, Listener {
     private final List<Integer> lockedSlots = new ArrayList<>();
     private final Map<Player, List<Integer>> personallyLockedSlots = new HashMap<>();
 
+    private boolean ignoreCancelledEvents = false;
+
     @Override
     public void makeActive(ItemStack item, ItemUseHandler handler) {
         Preconditions.checkNotNull(item, "item is null");
@@ -100,16 +102,22 @@ public class ItemServiceImpl implements ItemService, Listener {
         });
     }
 
+    public void setIgnoreCancelledEvents(boolean value) {
+        this.ignoreCancelledEvents = value;
+    }
+
     @EventHandler
     private void handleUse(PlayerInteractEvent event) {
-        val player = event.getPlayer();
-        val item = event.getItem();
+        if (!event.isCancelled() || !ignoreCancelledEvents) {
+            val player = event.getPlayer();
+            val item = event.getItem();
 
-        if (item != null && activeItems.containsKey(item)) {
-            event.setCancelled(true);
-            val handlers = this.activeItems.get(item);
-            getHand(event.getAction()).ifPresent(hand ->
+            if (item != null && activeItems.containsKey(item)) {
+                event.setCancelled(true);
+                val handlers = this.activeItems.get(item);
+                getHand(event.getAction()).ifPresent(hand ->
                     handlers.forEach(handler -> handler.handle(player, hand)));
+            }
         }
     }
 
