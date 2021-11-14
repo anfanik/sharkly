@@ -4,7 +4,9 @@ plugins {
 }
 
 group 'me.anfanik'
-version '1.2.2'
+version '1.2.3'
+
+compileJava.options.encoding = "UTF-8"
 
 repositories {
     mavenCentral()
